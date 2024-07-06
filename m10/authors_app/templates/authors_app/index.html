@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Authors_and_quotes</title>
+    <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@latest/css/pico.min.css"/>
+</head>
+<body>
+<main class="container">
+    <nav style="margin-bottom: 20px; border-bottom: 2px solid; padding-left: 30px">
+        {% if user.is_authenticated %}
+        <ul>
+            <li><a href="{% url 'authors_app:author' %}" role="button">Add Author</a></li>
+            <li><a href="{% url 'authors_app:quote' %}" role="button">Add Quote</a></li>
+        </ul>
+        <ul>
+            <li>Welcome <b>{{ user.username }}!</b></li>
+            <li><a href="{% url 'users:profile' %}" role="button">Profile</a></li>
+            <li><a href="{% url 'users:logout' %}" role="button">Logout</a></li>
+        </ul>
+        {% else %}
+        <ul>
+            <li><a href="{% url 'users:signup' %}" role="button">Sign Up</a></li>
+            <li><a href="{% url 'users:login' %}" role="button">Login</a></li>
+        </ul>
+        {% endif %}
+    </nav>
+    
+    
+
+    {% for author in authors %}
+    <ul>
+        <li>
+            <a href="{% url 'authors_app:author_details' author.id %}"> {{ author.fullname }} </a>
+        </li>
+    </ul>
+    {% endfor %}
+</main>
+</body>
+</html>
+

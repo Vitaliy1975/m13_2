@@ -1,0 +1,24 @@
+{% extends "authors_app/base.html" %}
+
+{% block content %}
+<h1>Add Quotes</h1>
+<form method="post">
+    {% csrf_token %}
+    <div class="form-row">
+        <div style="padding: 10px">
+            <label> Select authors:
+                <select name="authors" multiple="multiple" required>
+                    {% for author in authors %}
+                    <option value="{{author.fullname}}">{{author.fullname}}</option>
+                    {% endfor %}
+                </select>
+            </label>
+        </div>
+        <div style="padding: 10px">
+            <label> Add a quote:
+                {{form.quote}}
+            </label>
+        </div>
+        <button type="submit" class="btn btn-primary">Add new quote</button>
+</form>
+{% endblock %}

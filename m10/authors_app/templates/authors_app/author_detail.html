@@ -1,0 +1,27 @@
+{% extends "authors_app/base.html" %}
+
+{% block content %}
+<h1>{{fullname}}</h1>
+<div>
+    <span>Fullname: {{ fullname }}</span>
+    <br>
+    <span>Date of birth: {{born_date}}</span>
+    <br>
+    <span>Place of birth: {{born_location}}</span>
+    <br>
+    <span>Short information about author:</span>
+    <br>
+    <br>
+    <span> {{description}}</span>
+    <br>
+    <br>
+    <span>Quotes by {{fullname}}:</span>
+    <br>
+    <br>
+    {% for quote in quotes %}
+    <span>{{ quote.quote }}</span>
+    <br>
+    <br>
+    {% endfor %}
+</div>
+{% endblock %}
